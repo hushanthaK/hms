@@ -11,6 +11,7 @@ use App\BookedRoom;
 use App\DynamicDropdown;
 use App\Role;
 use App\Amenities;
+use App\Company;
 use App\ExpenseCategory;
 function lang_trans($key){
     $defaultLang = 'en';
@@ -118,6 +119,10 @@ function getCustomerByUserId($userId){
 function getCustomerList($type='pluck'){
     if($type == 'get') return Customer::select('id',DB::raw('CONCAT(name, " (", mobile,")") AS display_text'))->whereNotNull('name')->whereIsDeleted(0)->orderBy('name','ASC')->get();
     else return Customer::select('id',DB::raw('CONCAT(name, " (", mobile,")") AS display_text'))->whereIsDeleted(0)->orderBy('name','ASC')->pluck('display_text','id');
+}
+function getCompanyList($type='pluck'){
+    if($type == 'get') return Company::select('id',DB::raw('CONCAT(name, " (", mobile,")") AS display_text'))->whereNotNull('name')->whereIsDeleted(0)->orderBy('name','ASC')->get();
+    else return Company::select('id',DB::raw('CONCAT(name, " (", mobile,")") AS display_text'))->whereIsDeleted(0)->orderBy('name','ASC')->pluck('display_text','id');
 }
 function getExpenseCategoryList(){
     return ExpenseCategory::whereStatus(1)->orderBy('name','ASC')->pluck('name','id');

@@ -5,14 +5,14 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-              <h2>{{lang_trans('heading_filter_customer')}}</h2>
+              <h2>Filter Company</h2>
               <div class="clearfix"></div>
           </div>
           <div class="x_content">
-              {{ Form::model($search_data,array('url'=>route('search-customer'),'id'=>"search-customer", 'class'=>"form-horizontal form-label-left")) }}
+              {{ Form::model($search_data,array('url'=>route('search-company'),'id'=>"search-company", 'class'=>"form-horizontal form-label-left")) }}
                 <div class="form-group col-sm-2">
-                  <label class="control-label">{{lang_trans('txt_fullname')}}</label>
-                  {{Form::text('customer_id',null,['class'=>"form-", "id"=>"customers", "placeholder"=>lang_trans('ph_select')])}}
+                  <label class="control-label">Company Name</label>
+                  {{Form::text('company_id',null,['class'=>"form-", "id"=>"customers", "placeholder"=>lang_trans('ph_select')])}}
                 </div>
                 <div class="form-group col-sm-2">
                   <label class="control-label">{{lang_trans('txt_mobile_num')}}</label>
@@ -44,7 +44,7 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
               <div class="x_title">
-                  <h2>{{lang_trans('txt_list_customers')}}</h2>
+                  <h2>List Companies</h2>
                   <div class="clearfix"></div>
               </div>
               <div class="x_content">
@@ -53,13 +53,11 @@
                   <thead>
                     <tr>
                       <th>{{lang_trans('txt_sno')}}</th>
-                      <th>{{lang_trans('txt_fullname')}}</th>
-                      <th>{{lang_trans('txt_father_name')}}</th>
+                      <th>Company Name</th>
+                      <th>company GST No.</th>
                       <th>{{lang_trans('txt_mobile_num')}}</th>
                       <th>{{lang_trans('txt_email')}}</th>
-                      <th>{{lang_trans('txt_gender')}}</th>
                       <th>{{lang_trans('txt_address')}}</th>
-                      <th>{{lang_trans('txt_nationality')}}</th>
                       <th>{{lang_trans('txt_country')}}</th>
                       <th>{{lang_trans('txt_state')}}</th>
                       <th>{{lang_trans('txt_city')}}</th>
@@ -71,17 +69,16 @@
                       <tr>
                         <td>{{$k+1}}</td>
                         <td>{{$val->name}}</td>
-                        <td>{{$val->father_name}}</td>
+                        <td>{{$val->gst_no}}</td>
                         <td>{{$val->mobile}}</td>
                         <td>{{$val->email}}</td>
-                        <td>{{$val->gender}}</td>
                         <td>{{$val->address}}</td>
-                        <td>{{@config('constants.NATIONALITY_LIST')[$val->nationality]}}</td>
                         <td>{{$val->country}}</td>
                         <td>{{$val->state}}</td>
                         <td>{{$val->city}}</td>
                         <td>
-                          <a class="btn btn-sm btn-info" href="{{route('edit-customer',[$val->id])}}"><i class="fa fa-pencil"></i></a>
+                          <a class="btn btn-sm btn-info" href="{{route('edit-company',[$val->id])}}"><i class="fa fa-pencil"></i></a>
+                          <button class="btn btn-danger btn-sm delete_btn" data-url="{{route('delete-company',[$val->id])}}" title="{{lang_trans('btn_delete')}}"><i class="fa fa-trash"></i></button>
                         </td>
                       </tr>
                     @endforeach
@@ -93,6 +90,6 @@
   </div>
 </div>
 <script>
-  globalVar.customerList = {!! json_encode($customer_list) !!};
+  globalVar.customerList = {!! json_encode($company_list) !!};
 </script>              
 @endsection

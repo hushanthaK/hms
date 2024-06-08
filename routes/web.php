@@ -85,6 +85,7 @@ Route::group(['prefix' => 'admin'], function() {
 		Route::post('save-company', ['uses' => 'CompanyController@saveCompany'])->name('save-company');
 		Route::get('list-company', ['uses' => 'CompanyController@listCompany'])->name('list-company');
 		Route::get('delete-company/{id}', ['uses' => 'CompanyController@deleteCompany'])->name('delete-company');
+		Route::post('/search-company', 'CompanyController@searchCompany')->name('search-company');
 
 		Route::get('add-room', ['uses' => 'AdminController@addRoom'])->name('add-room');
 		Route::get('edit-room/{id}', ['uses' => 'AdminController@editRoom'])->name('edit-room');

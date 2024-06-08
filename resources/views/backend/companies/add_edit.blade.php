@@ -26,12 +26,12 @@
                   @endif
                     <div class="row">
                       <div class="col-md-4 col-sm-4 col-xs-12">
-                        <label class="control-label"> {{lang_trans('txt_firstname')}} <span class="required">*</span></label>
-                        {{Form::text('name',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"name", "placeholder"=>lang_trans('ph_enter').lang_trans('txt_firstname')])}}
+                        <label class="control-label"> Company Name <span class="required">*</span></label>
+                        {{Form::text('name',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"name", "placeholder"=>lang_trans('ph_enter').'Company Name'])}}
                       </div>
                       <div class="col-md-4 col-sm-4 col-xs-12">
-                        <label class="control-label"> {{lang_trans('txt_surname')}} <span class="required">*</span></label>
-                        {{Form::text('surname',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"name", "placeholder"=>lang_trans('ph_enter').lang_trans('txt_surname')])}}
+                        <label class="control-label"> Company GST No. <span class="required">*</span></label>
+                        {{Form::text('gst_no',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"name", "placeholder"=>lang_trans('ph_enter')."Company GST No."])}}
                       </div>
                      {{--  <div class="col-md-4 col-sm-4 col-xs-12">
                         <label class="control-label"> {{lang_trans('txt_middlename')}} <span class="required">*</span></label>
@@ -61,14 +61,14 @@
                         <label class="control-label"> {{lang_trans('txt_city')}}</label>
                         {{Form::text('city',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"city", "placeholder"=>lang_trans('ph_enter').lang_trans('txt_city')])}}
                       </div>
-                      <div class="col-md-4 col-sm-4 col-xs-12">
+                      {{-- <div class="col-md-4 col-sm-4 col-xs-12">
                           <label class="control-label"> {{lang_trans('txt_gender')}} <span class="required">*</span></label>
                           {{ Form::select('gender',config('constants.GENDER'),null,['class'=>'form-control col-md-6 col-xs-12','placeholder'=>lang_trans('ph_select')]) }}
-                      </div>
-                      <div class="col-md-4 col-sm-4 col-xs-12">
+                      </div> --}}
+                      {{-- <div class="col-md-4 col-sm-4 col-xs-12">
                         <label class="control-label"> {{lang_trans('txt_age')}} </label>
                         {{Form::number('age',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"age", "placeholder"=>lang_trans('ph_enter').lang_trans('txt_age'),"min"=>10])}}
-                      </div>                         
+                      </div>                          --}}
                     </div>
                       <div class="ln_solid"></div>
                       <div class="col-md-12 col-sm-12 col-xs-12 text-right">
