@@ -44,6 +44,14 @@ class CompanyController extends Controller
             $success = config('constants.FLASH_REC_ADD_1');
             $error = config('constants.FLASH_REC_ADD_0');
         }
+        if(Company::where('email', $request->email)->get()) {
+            return redirect()->back()->with(['error' => config('constants.FLASH_EMAIL_ADDRESS_EXIST')]);
+        }
+
+        if(Company::where('mobile', $request->mobile)->get()) {
+            return redirect()->back()->with(['error' => config('constants.FLASH_MOBILE_NUMBER_EXIST')]);
+        }
+
         $res = Company::updateOrCreate(['id' => $request->id], $request->except(['_token']));
         if ($res) {
 

@@ -13,6 +13,7 @@ $permissionsArr = getMenuPermission();
           <ul class="nav child_menu">
             @if($permissionsArr['quick-check-in']==1) <li><a href="{{route('quick-check-in')}}">{{lang_trans('sidemenu_quick_checkin')}} </a></li> @endif
             @if($permissionsArr['add-check-in']==1) <li><a href="{{route('room-reservation')}}">{{lang_trans('sidemenu_checkin_add')}} </a></li> @endif
+            @if($permissionsArr['add-check-in']==1) <li><a href="{{route('company-room-reservation')}}">Company Check In </a></li> @endif
             @if($permissionsArr['list-check-in']==1) <li><a href="{{route('list-reservation')}}">{{lang_trans('sidemenu_checkin_all')}} </a></li> @endif
             @if($permissionsArr['list-check-outs']==1) <li><a href="{{route('list-check-outs')}}">{{lang_trans('sidemenu_checkout_all')}} </a></li> @endif
           </ul>

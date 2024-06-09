@@ -107,6 +107,7 @@ Route::group(['prefix' => 'admin'], function() {
 
 		Route::get('quick-check-in', ['uses' => 'AdminController@roomReservation'])->name('quick-check-in');
 		Route::get('check-in', ['uses' => 'AdminController@roomReservation'])->name('room-reservation');
+		Route::get('company-check-in', ['uses' => 'AdminController@companyRoomReservation'])->name('company-room-reservation');
 		Route::post('save-reservation', ['uses' => 'AdminController@saveReservation'])->name('save-reservation');
 		Route::get('check-out/{id}', ['uses' => 'AdminController@checkOut'])->name('check-out-room');
 		Route::post('check-out', ['uses' => 'AdminController@saveCheckOutData'])->name('check-out');

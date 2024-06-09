@@ -225,12 +225,27 @@ if(globalVar.page=='room_reservation_add'){
   $('.guest_type').on('ifChanged',function(){
     $('#new_guest_section,#existing_guest_section').hide();
     var type = $(this).val();
+    console.log(type);
     if(type=='new'){
       $('#new_guest_section').show();
     } else {
       $('#existing_guest_section').show();
     }
   });
+
+  // NEW : Add this for company type select
+  $('.company_type').on('ifChanged',function(){
+    $('#new_company_section,#existing_company_section').hide();
+    var type = $(this).val();
+    if(type=='new'){
+      $('#new_company_section').show();
+    } else if(type == 'existing') {
+      $('#existing_company_section').show();
+    }
+  });
+
+
+
   $(document).on('change', '#referred_by',function(){
       let val = 'OYO';
       if($(this).val()=='Self'){

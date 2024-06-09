@@ -191,19 +191,110 @@
       </div>
   </div>
 
+  {{-- NEW : Company Type Section --}}
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Company Type</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content"> 
+              <div class="row"> 
+               <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="col-md-2 col-sm-2 col-xs-12">
+                  {{Form::radio('company_type','none',true,['class'=>"flat company_type", 'id'=>'no_company'])}} <label for="no_company">No Company</label>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-12">
+                  {{Form::radio('company_type','new',false,['class'=>"flat company_type", 'id'=>'new_company'])}} <label for="new_company">New Company</label>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-12">
+                  {{Form::radio('company_type','existing',false,['class'=>"flat company_type", 'id'=>'existing_company'])}} <label for="existing_company">Existing Company</label>
+                </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row hide_elem" id="existing_company_section">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+          <div class="x_title">
+              <h2>Existing Company List</h2>
+              <div class="clearfix"></div>
+          </div>
+          <div class="x_content"> 
+            <div class="row"> 
+             <div class="col-md-4 col-sm-4 col-xs-12">
+                  <label class="control-label">Company</label>
+                  {{Form::text('selected_company_id',null,['class'=>"form-", "id"=>"companies", "placeholder"=>lang_trans('ph_select')])}}
+              </div>
+            </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="row hide_elem" id="new_company_section">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>New Company Details</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content"> 
+          <div class="row"> 
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <label class="control-label"> {{lang_trans('txt_company_name')}}</label><span class="required">*</span>
+              {{Form::text('company_name',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"company_name", "placeholder"=>lang_trans('ph_enter').lang_trans('txt_company_name')])}}
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <label class="control-label"> {{lang_trans('txt_company_gst_num')}}</label>
+              {{Form::text('company_gst_num',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"company_gst_num", "placeholder"=>lang_trans('ph_enter').lang_trans('txt_company_gst_num')])}}
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <label class="control-label"> Company Email</label><span class="required">*</span>
+              {{Form::text('company_email',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"company_email", "placeholder"=>lang_trans('ph_enter')."Company Email"])}}
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <label class="control-label"> Company Phone</label><span class="required">*</span>
+              {{Form::text('company_mobile',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"company_mobile", "placeholder"=>lang_trans('ph_enter')."Company Phone"])}}
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <label class="control-label">Address</label>
+              {{Form::text('company_address',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"company_address", "placeholder"=>lang_trans('ph_enter')."Address"])}}
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <label class="control-label"> {{lang_trans('txt_country')}} </label>
+              {{ Form::select('company_country',getCountryList(),getSettings('default_country'),['class'=>'form-control col-md-6 col-xs-12', "id"=>"company_country", 'placeholder'=>lang_trans('ph_select')]) }}
+            </div>
+            {{-- <div class="col-md-4 col-sm-4 col-xs-12">
+              <label class="control-label">Country</label>
+              {{Form::text('company_country',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"company_country", "placeholder"=>lang_trans('ph_enter')."Country"])}}
+            </div> --}}
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <label class="control-label">State</label>
+              {{Form::text('company_state',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"company_state", "placeholder"=>lang_trans('ph_enter')."State"])}}
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <label class="control-label">City</label>
+              {{Form::text('company_city',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"company_city", "placeholder"=>lang_trans('ph_enter')."City"])}}
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
   <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
               <div class="x_content">
                   <div class="row">
-                      <div class="col-md-4 col-sm-4 col-xs-12">
-                        <label class="control-label"> {{lang_trans('txt_company_name')}}</label>
-                        {{Form::text('company_name',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"company_name", "placeholder"=>lang_trans('ph_enter').lang_trans('txt_company_name')])}}
-                      </div>
-                      <div class="col-md-4 col-sm-4 col-xs-12">
-                        <label class="control-label"> {{lang_trans('txt_company_gst_num')}}</label>
-                        {{Form::text('company_gst_num',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"company_gst_num", "placeholder"=>lang_trans('ph_enter').lang_trans('txt_company_gst_num')])}}
-                      </div>
+
                       <div class="col-md-4 col-sm-4 col-xs-12">
                         <label class="control-label"> {{lang_trans('txt_room_plan')}} <span class="required">*</span></label>
                         {{ Form::select('room_plan',config('constants.ROOM_PLANS'),null,['class'=>'form-control col-md-6 col-xs-12','placeholder'=>lang_trans('ph_select')]) }}
@@ -380,6 +471,7 @@
 <script>
   globalVar.page = 'room_reservation_add';
   globalVar.customerList = {!! json_encode($customer_list) !!};
+  globalVar.companyList = {!! json_encode($company_list) !!};
 </script> 
 <script type="text/javascript" src="{{URL::asset('public/js/page_js/page.js')}}"></script>       
 @endsection

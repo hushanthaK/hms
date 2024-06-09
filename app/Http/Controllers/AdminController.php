@@ -6,6 +6,7 @@ use Auth,DB,Hash;
 use App\User,App\Customer,App\Role;
 use App\Room,App\RoomType, App\BookedRoom;
 use App\Amenities;
+use App\Company;
 use App\FoodCategory,App\FoodItem;
 use App\ExpenseCategory,App\Expense;
 use App\Product,App\StockHistory;
@@ -269,7 +270,15 @@ class AdminController extends Controller
     public function roomReservation() {
         $this->data['roomtypes_list']=getRoomTypesList('custom');
         $this->data['customer_list']=getCustomerList('get');
+        $this->data['company_list']=getCompanyList('get');
         return view('backend/rooms/room_reservation_add_edit',$this->data);
+    }
+
+    public function companyRoomReservation() {
+        $this->data['roomtypes_list']=getRoomTypesList('custom');
+        $this->data['customer_list']=getCustomerList('get');
+        $this->data['company_list']=getCompanyList('get');
+        return view('backend/rooms/company_room_reservation_add_edit',$this->data);
     }
 
     public function editReservation(Request $request){
@@ -298,6 +307,7 @@ class AdminController extends Controller
 
         $reservationData = [];
         $customerData = [];
+        $companyData = [];
 
         if($request->guest_type=='existing'){
             $customerId = $request->selected_customer_id;
@@ -330,6 +340,38 @@ class AdminController extends Controller
             //sync user and customer
             $this->core->syncUserAndCustomer();
         }
+
+        //dd($request->all());
+        if($request->company_type == 'existing') {
+            $companyId = $request->selected_company_id;
+            $compData = Company::whereId($companyId)->first();
+            $compName = $compData->name;
+            $compGst = $compData->gst_no;
+
+        } else if($request->company_type == 'new') {
+            if(!$request->company_name || !$request->company_gst_num || !$request->company_email || !$request->company_mobile){
+                return redirect()->back()->with(['error' => config('constants.FLASH_FILL_REQUIRED_FIELD')]);
+            }
+            $companyData = [
+                "name" => $request->company_name,
+                "gst_no" => $request->company_gst_num,
+                "email" => $request->company_email,
+                "mobile" => $request->company_mobile,
+                "address" => $request->company_address,
+                "country" => $request->company_country,
+                "state" => $request->company_state,
+                "city" => $request->company_city,
+            ];
+            $compName = $request->company_name;
+            $compGst = $request->company_gst_num;
+
+            $companyId = Company::insertGetId($companyData);
+        } else {
+            $companyId = null;
+            $compName = null;
+            $compGst = null;
+        }
+
         $reservationData = [
             "customer_id" => $customerId,
             "guest_type" => $request->guest_type,
@@ -348,8 +390,9 @@ class AdminController extends Controller
             "referred_by_name" => $request->referred_by_name,
             "remark_amount" => $request->remark_amount,
             "remark" => $request->remark,
-            "company_name" => $request->company_name,
-            "company_gst_num"=>$request->company_gst_num,
+            "company_id" => $companyId,
+            "company_name" => $compName,
+            "company_gst_num"=>$compGst,
             "room_plan"=>$request->room_plan,
         ];
         if(!$request->id){
