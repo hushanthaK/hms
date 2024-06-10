@@ -290,10 +290,19 @@ class AdminController extends Controller
         }
     } 
     public function saveReservation(Request $request) {
-        
+        // dd($request->all());
+        $validated = $request->validate([
+            'guest_type' => 'required',
+            'selected_customer_id' => 'required_if:guest_type,existing|nullable',
+            // 'email' => 'required|email|max:255|unique:users',
+            // 'gender' => 'required|in:male,female',
+        ]);
+
+        return redirect()->back()->with(['error' => config('constants.FLASH_FILL_REQUIRED_FIELD')])->withInput();
+
         if($request->id>0){
             if($this->core->checkWebPortal()==0){
-                return redirect()->back()->with(['info' => config('constants.FLASH_NOT_ALLOW_FOR_DEMO')]);
+                return redirect()->back()->with(['info' => config('constants.FLASH_NOT_ALLOW_FOR_DEMO')])->withInput();
             } 
             $success = config('constants.FLASH_REC_UPDATE_1');
             $error = config('constants.FLASH_REC_UPDATE_0');
@@ -302,7 +311,7 @@ class AdminController extends Controller
             $error = config('constants.FLASH_REC_ADD_0');
         }
         if(!$request->check_in_date || !$request->check_out_date || !$request->duration_of_stay || !$request->room_plan){
-            return redirect()->back()->with(['error' => config('constants.FLASH_FILL_REQUIRED_FIELD')]);
+            return redirect()->back()->with(['error' => config('constants.FLASH_FILL_REQUIRED_FIELD')])->withInput();
         }
 
         $reservationData = [];
@@ -317,7 +326,7 @@ class AdminController extends Controller
         } else {
             $custName = $request->name;
             if(!$request->name || !$request->mobile || !$request->gender){
-                return redirect()->back()->with(['error' => config('constants.FLASH_FILL_REQUIRED_FIELD')]);
+                return redirect()->back()->with(['error' => config('constants.FLASH_FILL_REQUIRED_FIELD')])->withInput();
             }
             $customerData = [
                 "surname" => $request->surname,
@@ -350,7 +359,7 @@ class AdminController extends Controller
 
         } else if($request->company_type == 'new') {
             if(!$request->company_name || !$request->company_gst_num || !$request->company_email || !$request->company_mobile){
-                return redirect()->back()->with(['error' => config('constants.FLASH_FILL_REQUIRED_FIELD')]);
+                return redirect()->back()->with(['error' => config('constants.FLASH_FILL_REQUIRED_FIELD')])->withInput();
             }
             $companyData = [
                 "name" => $request->company_name,

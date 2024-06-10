@@ -27,10 +27,10 @@
                 <div class="row"> 
                  <div class="col-md-12 col-sm-12 col-xs-12">
                   <div class="col-md-2 col-sm-2 col-xs-12">
-                    {{Form::radio('guest_type','new',true,['class'=>"flat guest_type", 'id'=>'new_guest'])}} <label for="new_guest">{{lang_trans('txt_new_guest')}}</label>
+                    {{Form::radio('guest_type','new',old('guest_type', 'new') == 'new',['class'=>"flat guest_type", 'id'=>'new_guest'])}} <label for="new_guest">{{lang_trans('txt_new_guest')}}</label>
                   </div>
                   <div class="col-md-2 col-sm-2 col-xs-12">
-                    {{Form::radio('guest_type','existing',false,['class'=>"flat guest_type", 'id'=>'existing_guest'])}} <label for="existing_guest">{{lang_trans('txt_existing_guest')}}</label>
+                    {{Form::radio('guest_type','existing',old('guest_type') == 'existing',['class'=>"flat guest_type", 'id'=>'existing_guest'])}} <label for="existing_guest">{{lang_trans('txt_existing_guest')}}</label>
                   </div>
                   </div>
                 </div>
@@ -50,7 +50,7 @@
                 <div class="row"> 
                  <div class="col-md-4 col-sm-4 col-xs-12">
                       <label class="control-label">{{lang_trans('txt_guest')}}</label>
-                      {{Form::text('selected_customer_id',null,['class'=>"form-", "id"=>"customers", "placeholder"=>lang_trans('ph_select')])}}
+                      {{Form::text('selected_customer_id',old('selected_customer_id'),['class'=>"form-", "id"=>"customers", "placeholder"=>lang_trans('ph_select')])}}
                   </div>
                 </div>
               </div>
