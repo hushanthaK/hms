@@ -88,7 +88,7 @@
                                 <label class="control-label"> Company Phone</label><span class="required">*</span>
                                 {{ Form::text('company_mobile', null, ['class' => 'form-control col-md-6 col-xs-12', 'id' => 'company_mobile', 'placeholder' => lang_trans('ph_enter') . 'Company Phone']) }}
                             </div>
-                            <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="col-md-4 col-sm-4 col-xs-12 ">
                                 <label class="control-label">Address</label>
                                 {{ Form::text('company_address', null, ['class' => 'form-control col-md-6 col-xs-12', 'id' => 'company_address', 'placeholder' => lang_trans('ph_enter') . 'Address']) }}
                             </div>
@@ -100,11 +100,11 @@
                 <label class="control-label">Country</label>
                 {{Form::text('company_country',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"company_country", "placeholder"=>lang_trans('ph_enter')."Country"])}}
               </div> --}}
-                            <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="col-md-4 col-sm-4 col-xs-12 hide_elem">
                                 <label class="control-label">State</label>
                                 {{ Form::text('company_state', null, ['class' => 'form-control col-md-6 col-xs-12', 'id' => 'company_state', 'placeholder' => lang_trans('ph_enter') . 'State']) }}
                             </div>
-                            <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="col-md-4 col-sm-4 col-xs-12 hide_elem">
                                 <label class="control-label">City</label>
                                 {{ Form::text('company_city', null, ['class' => 'form-control col-md-6 col-xs-12', 'id' => 'company_city', 'placeholder' => lang_trans('ph_enter') . 'City']) }}
                             </div>
@@ -156,7 +156,7 @@
             </div>
         </div> --}}
 
-        <div class="row" id="new_guest_section">
+       {{-- <div class="row" id="new_guest_section">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
@@ -166,7 +166,7 @@
                     <div class="x_content">
                         <div class="row">
 
-                            <div class="col-md-4 col-sm-4 col-xs-12">
+                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label class="control-label"> {{ lang_trans('txt_surname') }} </label>
                                 {{ Form::text('surname', null, ['class' => 'form-control col-md-6 col-xs-12', 'id' => 'name', 'placeholder' => lang_trans('ph_enter') . lang_trans('txt_surname')]) }}
                             </div>
@@ -210,17 +210,17 @@
                                         class="required">*</span></label>
                                 {{ Form::select('gender', config('constants.GENDER'), null, ['class' => 'form-control col-md-6 col-xs-12', 'placeholder' => lang_trans('ph_select')]) }}
                             </div>
-                            {{-- @if (!$quickCheckIn)
+                             @if (!$quickCheckIn)
                                 <div class="col-md-4 col-sm-4 col-xs-12">
                                     <label class="control-label"> {{ lang_trans('txt_age') }} </label>
                                     {{ Form::number('age', null, ['class' => 'form-control col-md-6 col-xs-12', 'id' => 'age', 'placeholder' => lang_trans('ph_enter') . lang_trans('txt_age'), 'min' => 10]) }}
                                 </div>
-                            @endif --}}
+                            @endif 
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>--}}
 
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">

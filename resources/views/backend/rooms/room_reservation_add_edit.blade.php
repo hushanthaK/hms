@@ -68,7 +68,7 @@
               <div class="x_content"> 
                 <div class="row"> 
                  
-                  <div class="col-md-4 col-sm-4 col-xs-12">
+                  <div class="col-md-4 col-sm-4 col-xs-12 ">
                     <label class="control-label"> {{lang_trans('txt_surname')}} </label>
                     {{Form::text('surname',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"name", "placeholder"=>lang_trans('ph_enter').lang_trans('txt_surname')])}}
                   </div>
@@ -76,7 +76,7 @@
                     <label class="control-label"> {{lang_trans('txt_firstname')}} <span class="required">*</span></label>
                     {{Form::text('name',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"name", "placeholder"=>lang_trans('ph_enter').lang_trans('txt_firstname')])}}
                   </div>
-                  <div class="col-md-4 col-sm-4 col-xs-12">
+                  <div class="col-md-4 col-sm-4 col-xs-12 hide_elem">
                     <label class="control-label"> {{lang_trans('txt_middlename')}} </label>
                     {{Form::text('middle_name',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"name", "placeholder"=>lang_trans('ph_enter').lang_trans('txt_middlename')])}}
                   </div>
@@ -96,11 +96,11 @@
                     <label class="control-label"> {{lang_trans('txt_country')}} </label>
                     {{ Form::select('country',getCountryList(),getSettings('default_country'),['class'=>'form-control col-md-6 col-xs-12', "id"=>"country", 'placeholder'=>lang_trans('ph_select')]) }}
                   </div>
-                  <div class="col-md-4 col-sm-4 col-xs-12">
+                  <div class="col-md-4 col-sm-4 col-xs-12 hide_elem">
                     <label class="control-label"> {{lang_trans('txt_state')}} </label>
                     {{Form::text('state',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"state", "placeholder"=>lang_trans('ph_enter').lang_trans('txt_state')])}}
                   </div>
-                  <div class="col-md-4 col-sm-4 col-xs-12">
+                  <div class="col-md-4 col-sm-4 col-xs-12 hide_elem">
                     <label class="control-label"> {{lang_trans('txt_city')}} </label>
                     {{Form::text('city',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"city", "placeholder"=>lang_trans('ph_enter').lang_trans('txt_city')])}}
                   </div>
@@ -274,11 +274,11 @@
               <label class="control-label">Country</label>
               {{Form::text('company_country',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"company_country", "placeholder"=>lang_trans('ph_enter')."Country"])}}
             </div> --}}
-            <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="col-md-4 col-sm-4 col-xs-12 hide_elem">
               <label class="control-label">State</label>
               {{Form::text('company_state',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"company_state", "placeholder"=>lang_trans('ph_enter')."State"])}}
             </div>
-            <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="col-md-4 col-sm-4 col-xs-12 hide_elem">
               <label class="control-label">City</label>
               {{Form::text('company_city',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"company_city", "placeholder"=>lang_trans('ph_enter')."City"])}}
             </div>
@@ -308,27 +308,27 @@
                           <label class="control-label"> {{lang_trans('txt_vehicle_number')}}</label>
                           {{Form::text('vehicle_number',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"vehicle_number", "placeholder"=>lang_trans('ph_enter').lang_trans('txt_vehicle_number')])}}
                         </div> 
-                        <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="col-md-4 col-sm-4 col-xs-12 hide_elem">
                             <label class="control-label"> {{lang_trans('txt_referred_by')}}<span class="required">*</span></label>
-                            {{ Form::select('referred_by',config('constants.REFERRED_BY'),null,['class'=>'form-control',"id"=>"referred_by"]) }}    
+                            {{ Form::select('referred_by',config('constants.REFERRED_BY'),'Self',['class'=>'form-control',"id"=>"referred_by"]) }}    
                         </div> 
-                        <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="col-md-4 col-sm-4 col-xs-12 hide_elem">
                           <label class="control-label"> {{lang_trans('txt_referred_by_name')}}</label>
                           {{Form::text('referred_by_name','WALK-IN',['class'=>"form-control col-md-6 col-xs-12", "id"=>"referred_by_name", "placeholder"=>lang_trans('ph_enter').lang_trans('txt_referred_by_name')])}}
                         </div>  
-                        <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="col-md-4 col-sm-4 col-xs-12 hide_elem">
                           <label class="control-label"> {{lang_trans('txt_reason_of_visit')}} 
                             {{-- <span class="required">*</span> --}}
                           </label>
                           {{Form::textarea('reason_visit_stay',null,['class'=>"form-control h34 col-md-6 col-xs-12", "id"=>"reason_visit_stay", "placeholder"=>lang_trans('ph_enter').lang_trans('txt_reason_of_visit'),"rows"=>1])}}
                         </div>  
-                        <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="col-md-4 col-sm-4 col-xs-12 hide_elem">
                             <label class="control-label"> {{lang_trans('txt_remark_amount')}} </label>
                             {{Form::number('remark_amount',null,['class'=>"form-control col-md-6 col-xs-12", "id"=>"Remark Amount","placeholder"=>lang_trans('ph_enter').lang_trans('txt_remark_amount'),"min"=>0])}}
                         </div> 
                       @endif
 
-                      <div class="col-md-4 col-sm-4 col-xs-12">
+                      <div class="col-md-4 col-sm-4 col-xs-12 hide_elem">
                         <label class="control-label"> {{lang_trans('txt_remark')}}</label>
                         {{Form::textarea('remark',null,['class'=>"form-control h34 col-md-6 col-xs-12", "id"=>"remark", "placeholder"=>lang_trans('ph_enter').lang_trans('txt_remark'),"rows"=>1])}}
                       </div>                   
