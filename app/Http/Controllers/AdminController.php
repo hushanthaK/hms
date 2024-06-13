@@ -294,11 +294,29 @@ class AdminController extends Controller
         $validated = $request->validate([
             'guest_type' => 'required',
             'selected_customer_id' => 'required_if:guest_type,existing|nullable',
-            // 'email' => 'required|email|max:255|unique:users',
-            // 'gender' => 'required|in:male,female',
+            'name'=>'required_if:guest_type,new|nullable',
+            'email' => 'required_if:guest_type,new|nullable',
+            'mobile' => 'required_if:guest_type,new|nullable',
+            'address' => 'required_if:guest_type,new|nullable',
+            'gender' => 'required_if:guest_type,new|nullable',
+            'check_in_date' => 'required',
+            'check_out_date' => 'required',
+            'duration_of_stay' => 'required',
+            'adult' => 'required',
+            'room_num' => 'required|array',
+            'company_type' => 'required',
+            'selected_company_id' => 'required_if:company_type,existing|nullable',
+            'company_name' => 'required_if:company_type,new|nullable',
+            'company_gst_num' => 'required_if:company_type,new|nullable',
+            'company_email' => 'required_if:company_type,new|nullable',
+            'company_mobile' => 'required_if:company_type,new|nullable',
+            'company_address' => 'required_if:company_type,new|nullable',
+            'room_plan' => 'required',
+            'idcard_type' => 'required_if:checkin_type,normal|nullable',
+            'idcard_no' => 'required_if:checkin_type,normal|nullable',
         ]);
 
-        return redirect()->back()->with(['error' => config('constants.FLASH_FILL_REQUIRED_FIELD')])->withInput();
+       // return redirect()->back()->with(['error' => config('constants.FLASH_FILL_REQUIRED_FIELD')])->withInput();
 
         if($request->id>0){
             if($this->core->checkWebPortal()==0){

@@ -258,6 +258,14 @@ if(globalVar.page=='room_reservation_add'){
     //startDate: new Date(),
     autoclose: true,
   });
+  $('.check_in_date').datetimepicker({
+    //startDate: new Date(),
+    autoclose: true,
+  });
+  $('.check_out_date').datetimepicker({
+    //startDate: new Date(),
+    autoclose: true,
+  });
   $("#check_in_date").on("change",function(){
       globalVar.checkInDate = $(this).val();
       globalVar.checkOutDate = "";
