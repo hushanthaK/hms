@@ -9,6 +9,11 @@
             $heading = lang_trans('btn_update');
         }
     @endphp
+      @if($errors->any())
+      @foreach ($errors->all() as $error)
+          <div class="alert alert-danger" role="alert">{{ $error }}</div>
+      @endforeach
+    @endif
     <div class="">
         @if ($flag == 1)
             {{ Form::model($data_row, ['url' => route('save-reservation'), 'id' => 'update-reservation-form', 'class' => 'form-horizontal form-label-left', 'files' => true]) }}
@@ -405,10 +410,10 @@
                                         <label class="control-label"> {{ lang_trans('txt_gender') }} </label>
                                         {{ Form::select('persons_info[gender][]', config('constants.GENDER'), null, ['class' => 'form-control col-md-6 col-xs-12', 'placeholder' => lang_trans('ph_select')]) }}
                                     </div>
-                                    {{-- <div class="col-md-1 col-sm-1 col-xs-12">
+                                    <div class="col-md-1 col-sm-1 col-xs-12 hide_elem">
                                         <label class="control-label"> {{ lang_trans('txt_age') }} </label>
                                         {{ Form::number('persons_info[age][]', null, ['class' => 'form-control col-md-6 col-xs-12', 'id' => 'person_age', 'placeholder' => lang_trans('ph_enter') . lang_trans('txt_age'), 'min' => 10]) }}
-                                    </div> --}}
+                                    </div>
                                     <div class="col-md-2 col-sm-2 col-xs-12">
                                         <label class="control-label"> {{ lang_trans('txt_address') }} </label>
                                         {{ Form::textarea('persons_info[address][]', null, ['class' => 'form-control col-md-6 col-xs-12', 'id' => 'address', 'placeholder' => lang_trans('ph_enter') . lang_trans('txt_address'), 'rows' => 1]) }}
@@ -429,12 +434,12 @@
                                     <div class="col-md-4 col-sm-4 col-xs-12">
                                         <label class="control-label"> {{ lang_trans('txt_checkin') }}<span
                                                 class="required">*</span></label>
-                                        {{ Form::text('check_in_date', null, ['class' => 'form-control col-md-6 col-xs-12 check_in_date', 'id' => 'check_in_date_1', 'placeholder' => lang_trans('ph_date'), 'autocomplete' => 'off', 'readonly' => true]) }}
+                                        {{ Form::text('persons_info[check_in_date][]', null, ['class' => 'form-control col-md-6 col-xs-12 check_in_date', 'id' => 'check_in_date_1', 'placeholder' => lang_trans('ph_date'), 'autocomplete' => 'off', 'readonly' => true]) }}
                                     </div>
                                     <div class="col-md-4 col-sm-4 col-xs-12 hide_elem_ mb-2">
                                         <label class="control-label"> {{ lang_trans('txt_checkout') }} <span
                                                 class="required">*</span></label>
-                                        {{ Form::text('check_out_date', null, ['class' => 'form-control col-md-6 col-xs-12 check_out_date', 'id' => 'check_out_date_1', 'placeholder' => lang_trans('ph_date'), 'autocomplete' => 'off', 'readonly' => true]) }}
+                                        {{ Form::text('persons_info[check_out_date][]', null, ['class' => 'form-control col-md-6 col-xs-12 check_out_date', 'id' => 'check_out_date_1', 'placeholder' => lang_trans('ph_date'), 'autocomplete' => 'off', 'readonly' => true]) }}
                                     </div>
 
                                 </div>
@@ -481,9 +486,9 @@
             <div class="col-md-2 col-sm-2 col-xs-12">
                 {{ Form::select('persons_info[gender][]', config('constants.GENDER'), null, ['class' => 'form-control col-md-6 col-xs-12', 'placeholder' => lang_trans('ph_select')]) }}
             </div>
-            {{-- <div class="col-md-1 col-sm-1 col-xs-12">
+            <div class="col-md-1 col-sm-1 col-xs-12 hide_elem">
                 {{ Form::number('persons_info[age][]', null, ['class' => 'form-control col-md-6 col-xs-12', 'id' => 'person_age', 'placeholder' => lang_trans('ph_enter') . lang_trans('txt_age'), 'min' => 10]) }}
-            </div> --}}
+            </div>
             <div class="col-md-2 col-sm-2 col-xs-12">
                 {{ Form::textarea('persons_info[address][]', null, ['class' => 'form-control col-md-6 col-xs-12', 'id' => 'address', 'placeholder' => lang_trans('ph_enter') . lang_trans('txt_address'), 'rows' => 1]) }}
             </div>
@@ -499,12 +504,12 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <label class="control-label"> {{ lang_trans('txt_checkin') }}<span
                         class="required">*</span></label>
-                {{ Form::text('check_in_date', null, ['class' => 'form-control col-md-6 col-xs-12 check_in_date', 'id' => 'check_in_date', 'placeholder' => lang_trans('ph_date'), 'autocomplete' => 'off', 'readonly' => true]) }}
+                {{ Form::text('persons_info[check_in_date][]', null, ['class' => 'form-control col-md-6 col-xs-12 check_in_date', 'id' => 'check_in_date', 'placeholder' => lang_trans('ph_date'), 'autocomplete' => 'off', 'readonly' => true]) }}
             </div>
             <div class="col-md-4 col-sm-4 col-xs-12 hide_elem_ mb-2">
                 <label class="control-label"> {{ lang_trans('txt_checkout') }} <span
                         class="required">*</span></label>
-                {{ Form::text('check_out_date', null, ['class' => 'form-control col-md-6 col-xs-12 check_out_date', 'id' => 'check_out_date', 'placeholder' => lang_trans('ph_date'), 'autocomplete' => 'off', 'readonly' => true]) }}
+                {{ Form::text('persons_info[check_out_date][]', null, ['class' => 'form-control col-md-6 col-xs-12 check_out_date', 'id' => 'check_out_date', 'placeholder' => lang_trans('ph_date'), 'autocomplete' => 'off', 'readonly' => true]) }}
             </div>
         </div>
     </div>

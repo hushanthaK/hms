@@ -4,9 +4,12 @@ use Illuminate\Database\Eloquent\Model;
 class Reservation extends Model
 {
 	protected $guarded = ['id'];
-	protected $with = ['customer','room_type','id_cards'];
+	protected $with = ['customer','company', 'room_type','id_cards'];
 	function customer(){
 	 	return $this->hasOne('App\Customer','id','customer_id');
+	}
+	function company(){
+	 	return $this->hasOne('App\Company','id','customer_id');
 	}
 	function id_cards(){
 	 	return $this->hasMany('App\MediaFile','tbl_id','id')->where('type','id_cards');

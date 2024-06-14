@@ -341,6 +341,11 @@ class AdminController extends Controller
 
             $custData = Customer::whereId($customerId)->first();
             $custName = $custData->name;
+        } else if($request->guest_type=='company') {
+            $customerId = $request->selected_company_id;
+
+            $custData = Company::whereId($customerId)->first();
+            $custName = $custData->name;
         } else {
             $custName = $request->name;
             if(!$request->name || !$request->mobile || !$request->gender){
@@ -473,7 +478,9 @@ class AdminController extends Controller
                             'age'=>$personReqData['age'][$k], 
                             'address'=>$personReqData['address'][$k], 
                             'idcard_type'=>$personReqData['idcard_type'][$k], 
-                            'idcard_no'=>$personReqData['idcard_no'][$k]
+                            'idcard_no'=>$personReqData['idcard_no'][$k],
+                            'check_in_date'=>$personReqData['check_in_date'][$k],
+                            'check_out_date'=>$personReqData['check_out_date'][$k]
                         ];
                     }
                 }
@@ -491,7 +498,7 @@ class AdminController extends Controller
     }
 
     public function viewReservation(Request $request) {
-        $this->data['data_row']=Reservation::with('orders_items','persons', 'booked_rooms')->whereId($request->id)->first();
+        $this->data['data_row'] = Reservation::with('orders_items','persons', 'booked_rooms')->whereId($request->id)->first();
         return view('backend/rooms/room_reservation_view',$this->data);
     }
     public function checkOut(Request $request) {

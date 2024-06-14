@@ -21,48 +21,94 @@
   $additionalAmountReason = $data_row->additional_amount_reason;
 @endphp
 <div class="">
-      <div class="row" id="new_guest_section">
-      <div class="col-md-12 col-sm-12 col-xs-12">
-          <div class="x_panel">
-              <div class="x_title">
-                  <h2>{{lang_trans('heading_guest_info')}}</h2>
-                  <div class="clearfix"></div>
+  @if ($data_row->guest_type == 'company')
+  <div class="row" id="new_guest_section">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Company Information</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content"> 
+              <div class="row"> 
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                      <table class="table table-bordered">
+                          <tr>
+                            <th>Company Name</th>
+                            <td>{{$data_row->company->name}}</td>
+                            <th>GST NO</th>
+                            <td>{{$data_row->company->gst_no}}</td>
+                          </tr>
+                          <tr>
+                            <th>{{lang_trans('txt_email')}}</th>
+                            <td>{{$data_row->company->email}}</td>
+                            <th>{{lang_trans('txt_mobile_num')}}</th>
+                            <td>{{$data_row->company->mobile}}</td>
+                          </tr>
+                          {{-- <tr>
+                            <th>{{lang_trans('txt_gender')}}</th>
+                            <td>{{$data_row->customer->gender}}</td>
+                            <th>{{lang_trans('txt_age')}}</th>
+                            <td>{{$data_row->customer->age}} {{lang_trans('txt_years')}}</td>
+                          </tr> --}}
+                          <tr>
+                            <th>{{lang_trans('txt_address')}}</th>
+                            <td colspan="3">{{$data_row->customer->address}}, {{$data_row->customer->city}}, {{$data_row->customer->state}}, {{$data_row->customer->country}}</td>
+                          </tr>
+                        
+                        </tbody>
+                      </table>
+                    </div>
               </div>
-              <div class="x_content"> 
-                <div class="row"> 
-                  <div class="col-md-12 col-sm-12 col-xs-12">
-                        <table class="table table-bordered">
-                            <tr>
-                              <th>{{lang_trans('txt_fullname')}}</th>
-                              <td>{{$data_row->customer->name}}</td>
-                              <th>{{lang_trans('txt_father_name')}}</th>
-                              <td>{{$data_row->customer->father_name}}</td>
-                            </tr>
-                            <tr>
-                              <th>{{lang_trans('txt_email')}}</th>
-                              <td>{{$data_row->customer->email}}</td>
-                              <th>{{lang_trans('txt_mobile_num')}}</th>
-                              <td>{{$data_row->customer->mobile}}</td>
-                            </tr>
-                            <tr>
-                              <th>{{lang_trans('txt_gender')}}</th>
-                              <td>{{$data_row->customer->gender}}</td>
-                              <th>{{lang_trans('txt_age')}}</th>
-                              <td>{{$data_row->customer->age}} {{lang_trans('txt_years')}}</td>
-                            </tr>
-                            <tr>
-                              <th>{{lang_trans('txt_address')}}</th>
-                              <td colspan="3">{{$data_row->customer->address}}, {{$data_row->customer->city}}, {{$data_row->customer->state}}, {{$data_row->customer->country}}</td>
-                            </tr>
-                          
-                          </tbody>
-                        </table>
-                      </div>
-                </div>
-              </div>
-          </div>
-      </div>
+            </div>
+        </div>
+    </div>
   </div>
+  @else
+  <div class="row" id="new_guest_section">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>{{lang_trans('heading_guest_info')}}</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content"> 
+              <div class="row"> 
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                      <table class="table table-bordered">
+                          <tr>
+                            <th>{{lang_trans('txt_fullname')}}</th>
+                            <td>{{$data_row->customer->name}}</td>
+                            <th>{{lang_trans('txt_father_name')}}</th>
+                            <td>{{$data_row->customer->father_name}}</td>
+                          </tr>
+                          <tr>
+                            <th>{{lang_trans('txt_email')}}</th>
+                            <td>{{$data_row->customer->email}}</td>
+                            <th>{{lang_trans('txt_mobile_num')}}</th>
+                            <td>{{$data_row->customer->mobile}}</td>
+                          </tr>
+                          <tr>
+                            <th>{{lang_trans('txt_gender')}}</th>
+                            <td>{{$data_row->customer->gender}}</td>
+                            <th>{{lang_trans('txt_age')}}</th>
+                            <td>{{$data_row->customer->age}} {{lang_trans('txt_years')}}</td>
+                          </tr>
+                          <tr>
+                            <th>{{lang_trans('txt_address')}}</th>
+                            <td colspan="3">{{$data_row->customer->address}}, {{$data_row->customer->city}}, {{$data_row->customer->state}}, {{$data_row->customer->country}}</td>
+                          </tr>
+                        
+                        </tbody>
+                      </table>
+                    </div>
+              </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  @endif
+
   
   <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
@@ -161,6 +207,8 @@
                               <th>{{lang_trans('txt_gender')}}</th>
                               <th>{{lang_trans('txt_age')}}</th>
                               <th>{{lang_trans('txt_address')}}</th>
+                              <th>Check in</th>
+                              <th>Check out</th>
                               <th>{{lang_trans('txt_idcard_type')}}</th>
                               <th>{{lang_trans('txt_idcard_num')}}</th>
                             </tr>
@@ -172,6 +220,8 @@
                                   <td>{{$val->gender}}</td>
                                   <td>{{$val->age}}</td>
                                   <td>{{$val->address}}</td>
+                                  <td>{{$val->check_in_date}}</td>
+                                  <td>{{$val->check_out_date}}</td>
                                   <td>{{@getDynamicDropdownById($val->idcard_type, 'dropdown_value')}}</td>
                                   <td>{{$val->idcard_no}}</td>
                                 </tr>
@@ -189,7 +239,7 @@
           </div>
       </div>
   </div>
-
+@if ($data_row->guest_type != 'company')
    <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
@@ -230,7 +280,7 @@
           </div>
       </div>
   </div>
-
+@endif
   <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">

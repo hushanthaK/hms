@@ -217,6 +217,15 @@ if(globalVar.page=='room_reservation_add'){
   $(document).on('click','.add-new-row',function(){
     var html = $(".colne_persons_info_elem").html();
     $(".persons_info_parent").append(html);
+    $('.check_in_date').datetimepicker({
+      //startDate: new Date(),
+      autoclose: true,
+    });
+    $('.check_out_date').datetimepicker({
+      //startDate: new Date(),
+      autoclose: true,
+    });
+    
   });
   $(document).on('click','.delete-row',function(){
     $(this).parents('.persons_info_elem').remove();

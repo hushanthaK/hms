@@ -82,9 +82,16 @@ $totalAmount = 0;
                           @endphp
                         <tr>
                           <td>{{$i}}</td>
-                          <td>{{($val->customer) ? $val->customer->name : 'NA'}}</td>
-                          <td>{{($val->customer) ? $val->customer->mobile : 'NA'}}</td>
-                          <td>{{($val->customer) ? $val->customer->email : 'NA'}}</td>
+                          @if ($val->guest_type == 'company')
+                            <td>{{($val->company) ? $val->company->name : 'NA'}}</td>
+                            <td>{{($val->company) ? $val->company->mobile : 'NA'}}</td>
+                            <td>{{($val->company) ? $val->company->email : 'NA'}}</td>
+                          @else
+                            <td>{{($val->customer) ? $val->customer->name : 'NA'}}</td>
+                            <td>{{($val->customer) ? $val->customer->mobile : 'NA'}}</td>
+                            <td>{{($val->customer) ? $val->customer->email : 'NA'}}</td>
+                          @endif
+                          
                           <td>
                             <button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#booked_room_{{$val->id}}">{{lang_trans('btn_view')}}</button>
                             @include('backend/model/booked_rooms_modal',['val'=>$val])
